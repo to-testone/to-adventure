@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RPG</title>
+</head>
+<body>
+    <div class="container">
+        <div class="full-screen" id="full-screen" data-screen="first">
+            <h1>TO Adventure</h1>
+            <input type="text" placeholder="PlayerName" id="player-name">
+            <button id="play">Play</button>
+        </div>
+        <div class="half-screen" id="half-screen" style="display: none;">
+            <div class="ui-left">
+                <div class="screen" data-screen="town">
+                    <h3>Town</h3>
+        
+                    <div class="routine">
+                        <button data-toscreen="map">Go Map</button>
+                        <button data-toscreen="shop">Go Shop</button>
+                    </div>
+                </div>
+                <div class="screen" data-screen="map" style="display: none;">
+                    <h3>Map</h3>
+        
+                    <div class="arenas" id="arenas">
+                        
+                    </div>
+                    <button data-toscreen="town" class="return">Return to Town</button>
+                </div>
+                <div class="screen" data-screen="shop" style="display: none;">
+                    <h3>Shop</h3>
+    
+                    <div class="shelf" id="shelf">
+                        
+                    </div>
+                    <button data-toscreen="town" class="return">Exit Shop</button>
+                </div>
+                <div class="screen" data-screen="arena" style="display: none;">
+                    <h3>Battle Arena</h3>
+                    <div class="enemy-area" id="enemy-area">
+                        
+                    </div>
+                    <p id="battle-log"></p>
+                    <div class="action">
+                        <button data-action="attack">Attack</button>
+                        <button id="skill">Skill</button>
+                        <button id="item">Item</button>
+                        <button id="run">Run</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-right">
+                <h3>Player Info</h3>
+                <div class="stats"> 
+                    <p id="player_name"></p>
+                    <p id="hero_class"></p>
+                    <p id="health"></p>
+                    <p id="mana"></p>
+                    <p id="atk"></p>
+                    <p id="def"></p>
+                    <p id="exp"></p>
+                    <p id="money"></p>
+                </div>
+                <div id="inventory-equipment">
+                    <div id="equipment">
+                        <div id="weapon"></div>
+                        <div id="shield"></div>
+                        <div id="armor"></div>
+                    </div>
+                    <div id="inventory">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js" defer type="module"></script>
+</body>
+</html>
