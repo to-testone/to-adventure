@@ -40,6 +40,7 @@ playButton.onclick = () => {
         player.hero_class = "GM";
         player.get_item(potion);
         player.get_equipment(equipment_list.dagger);
+        player.get_equipment(equipment_list.narmalshill);
         player.get_money(200);
     }
     ui.updateStats(player);
