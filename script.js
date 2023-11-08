@@ -19,9 +19,7 @@ playButton.onclick = () => {
     
     const player = data.player;
     
-    ui.updateStats(player);
-    ui.updateInventory(player);
-    ui.updateEquipment(player);
+
     
     ui.showScreen("town");
     
@@ -31,7 +29,7 @@ playButton.onclick = () => {
         button.addEventListener('click', () => {
             ui.showScreen(button.dataset.toscreen);
             player.atShop = (button.dataset.toscreen==="shop");
-            const shop = new Shop([equipment_list.sword, equipment_list.dagger, equipment_list.lance, equipment_list.roundbanger, equipment_list.illuson, consumable_list.red_potion, consumable_list.blue_potion]);
+            const shop = new Shop([equipment_list.sword, equipment_list.dagger, equipment_list.lance, equipment_list.roundbanger, equipment_list.illuson, consumable_list.red_potion, consumable_list.blue_potion, equipment_list.narmalshill]);
             const map = new Map("Forest", 1, [arena_list['1-1'], arena_list['1-2'], arena_list['1-3'], arena_list['1-4'], arena_list['1-5'], arena_list['1-Boss']]);
         })
     })
@@ -39,9 +37,14 @@ playButton.onclick = () => {
     if (playerName.value === "TestOne") {
         const potion = consumable_list.red_potion;
         potion.amount = 5;
+        player.hero_class = "GM";
         player.get_item(potion);
         player.get_equipment(equipment_list.dagger);
+        player.get_money(200);
     }
+    ui.updateStats(player);
+    ui.updateInventory(player);
+    ui.updateEquipment(player);
 }
 
 

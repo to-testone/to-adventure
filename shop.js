@@ -31,7 +31,7 @@ export class Shop {
 
             const itemType = document.createElement('div');
             itemType.classList.add('item-type');
-            itemType.textContent = item.getType();
+            itemType.innerHTML = item.getType();
             itemType.style.color = "#F4B183";
 
             const itemDescription = document.createElement('div');

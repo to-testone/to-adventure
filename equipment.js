@@ -21,7 +21,7 @@ export class Equipment extends Item {
     }
 
     getType() {
-        return "equipment";
+        return "equipment<br>"+this.type;
     }
 
     clone() {
@@ -35,6 +35,7 @@ export const equipment_list = {
     dagger: new Equipment(101, "Dagger", "Spy dagger", 1, 50, "weapon", 5, 0),
     lance: new Equipment(102, "Lance", "Lancelot", 1, 100, "weapon", 15, 0),
     yearnsword: new Equipment(103, "YearnSword", "Sword of YearningFall", 1, 350, "weapon", 30, 0),
-    roundbanger: new Equipment(104, "RoundBanger", "Bang Bang", 1, 150, "shield", 0, 15),
-    illuson: new Equipment(105, "Illuson", "Nice Suit", 1, 200, "armor", 0, 20),
+    narmalshill: new Equipment(104, "NarmalShill", "What??", 1, 75, "shield", 0, 3),
+    roundbanger: new Equipment(105, "RoundBanger", "Bang Bang", 1, 200, "shield", 0, 5),
+    illuson: new Equipment(106, "Illuson", "Nice Suit", 1, 100, "armor", 0, 1),
 }

@@ -9,18 +9,14 @@ export class Monster {
         this.health = maxHealth;
         this.level = level;
         this.atk = level;
+        this.def = 0;
         this.drop_exp = drop_exp;
         this.drop_items = drop_items;
     }
 
-    take_damage(attacker ,damage) {
+    take_damage(damage) {
         this.health -= damage;
-        if(this.health <= 0) {
-            attacker.get_exp(this.drop_exp);
-            attacker.get_item(this.drop_items.clone());
-            ui.showLog(`${attacker.player_name} killed ${this.name}. receive EXP ${this.drop_exp}<br>
-                        ${attacker.player_name} get ${this.drop_items.name} x ${this.drop_items.amount}`);
-        }
+        if(this.health < 0) {this.health = 0;}
     }
 
     dropItem() {
@@ -39,10 +35,10 @@ export class Monster {
 }
 
 export const monsters_list = {
-    slime: new Monster("Slime", 10, 1, 10, [{item: item_list.jellopy.clone(), dropChance: 1}, {item: consumable_list.red_potion.clone(), dropChance: 0.3}, {item: equipment_list.sword.clone(), dropChance: 0.05}]),
-    worm: new Monster("Worm", 8, 3, 12, [{item: item_list.worm_tooth.clone(), dropChance: 1}, {item: consumable_list.red_potion.clone(), dropChance: 0.3}, {item: equipment_list.lance.clone(), dropChance: 0.05}]),
-    bat: new Monster("Bat", 15, 5, 18, [{item: item_list.bat_wing.clone(), dropChance: 1}, {item: consumable_list.blue_potion.clone(), dropChance: 0.3}, {item: equipment_list.dagger.clone(), dropChance: 0.05}]),
-    monkey: new Monster("Monkey", 20, 8, 25, [{item: item_list.coconut.clone(), dropChance: 1}, {item: consumable_list.banana.clone(), dropChance: 0.3}, {item: equipment_list.dagger.clone(), dropChance: 0.05}]),
-    cowjubss: new Monster("CowJubss", 30, 10, 40, [{item: item_list.spoiledmilk.clone(), dropChance: 1}, {item: consumable_list.milk.clone(), dropChance: 0.3}, {item: consumable_list.cheese.clone(), dropChance: 0.1}, {item: equipment_list.lance.clone(), dropChance: 0.05}]),
+    slime: new Monster("Slime", 10, 1, 10, [{item: item_list.jellopy.clone(), dropChance: 1}, {item: consumable_list.red_potion.clone(), dropChance: 0.2}, {item: equipment_list.sword.clone(), dropChance: 0.05}]),
+    worm: new Monster("Worm", 8, 3, 12, [{item: item_list.worm_tooth.clone(), dropChance: 1}, {item: consumable_list.red_potion.clone(), dropChance: 0.2}, {item: equipment_list.lance.clone(), dropChance: 0.05}]),
+    bat: new Monster("Bat", 15, 5, 18, [{item: item_list.bat_wing.clone(), dropChance: 1}, {item: consumable_list.blue_potion.clone(), dropChance: 0.2}, {item: equipment_list.dagger.clone(), dropChance: 0.05}]),
+    monkey: new Monster("Monkey", 20, 8, 25, [{item: item_list.coconut.clone(), dropChance: 1}, {item: consumable_list.banana.clone(), dropChance: 0.2}, {item: equipment_list.dagger.clone(), dropChance: 0.05}]),
+    cowjubss: new Monster("CowJubss", 30, 10, 40, [{item: item_list.spoiledmilk.clone(), dropChance: 1}, {item: consumable_list.milk.clone(), dropChance: 0.2}, {item: consumable_list.cheese.clone(), dropChance: 0.1}, {item: equipment_list.lance.clone(), dropChance: 0.05}]),
     yearningfell: new Monster("YearningFell", 64, 15, 200, [{item: consumable_list.red_potion.clone(), dropChance: 1.0}, {item: consumable_list.blue_potion.clone(), dropChance: 0.7}, {item: equipment_list.yearnsword.clone(), dropChance: 0.1}]),
 };

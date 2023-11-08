@@ -31,7 +31,7 @@ export class UI {
         player.inventory.forEach(item => {
             const itemSlot = document.createElement('div');
             itemSlot.classList.add('item-slot');
-            itemSlot.addEventListener('click', () => item.on_click(player, this))
+            itemSlot.addEventListener('click', () => item.on_click(player))
 
             const itemImage = document.createElement('img');
             itemImage.src = `images/${item.name}.png`;
@@ -53,7 +53,7 @@ export class UI {
 
             const itemType = document.createElement('div');
             itemType.classList.add('item-type');
-            itemType.textContent = item.getType();
+            itemType.innerHTML = item.getType();
             itemType.style.color = "#F4B183";
 
             const itemDescription = document.createElement('div');
@@ -89,15 +89,33 @@ export class UI {
                     this.src = 'images/NoImage.png';
                 };
                 equipmentImage.alt = value.name;
+
+                const equipmentData = document.createElement('div')
+                equipmentData.classList.add('item-data')
+
+                const equipmentName = document.createElement('div');
+                equipmentName.classList.add('item-name');
+                equipmentName.textContent = value.name;
+
+                const equipmentType = document.createElement('div');
+                equipmentType.classList.add('item-type');
+                equipmentType.innerHTML = value.getType();
+                equipmentType.style.color = "#F4B183";
+
+                equipmentData.appendChild(equipmentName);
+                equipmentData.appendChild(equipmentType);
                 equipmentSlot.appendChild(equipmentImage);
+                equipmentSlot.appendChild(equipmentData);
                 this.equipmentElement.appendChild(equipmentSlot);
             } else {
                 const equipmentSlot = document.createElement('div');
-                equipmentSlot.classList.add(key);
+                equipmentSlot.classList.add('equipment-slot');
     
                 const equipmentImage = document.createElement('img');
                 equipmentImage.src = 'images/Empty.png';
                 equipmentImage.alt = "Empty";
+                equipmentSlot.appendChild(equipmentImage);
+                this.equipmentElement.appendChild(equipmentSlot)
             }
         }
     }

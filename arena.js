@@ -13,12 +13,12 @@ export class Arena {
         this.battleLog = document.getElementById('battle-log');
         this.battleLog.innerText = "Battle Start!";
         this.enemy_area = document.getElementById('enemy-area');
+        this.itemButton = document.getElementById('item');
+        this.itemButton.disabled = true;
+        this.skillButton = document.getElementById('skill');
+        this.skillButton.disabled = true;
         this.runButton = document.getElementById('run');
         this.runButton.disabled = false;
-        this.runButton = document.getElementById('skill');
-        this.runButton.disabled = true;
-        this.runButton = document.getElementById('item');
-        this.runButton.disabled = true;
         this.runButton.onclick = () => {ui.showScreen('town');}
         this.update();
     }
@@ -66,9 +66,10 @@ export class Arena {
     action(action, target) {
         this.runButton.disabled = true;
         switch (action) {
-            case 'attack': 
-                target.health -= this.player.atk;
-                this.battleLog.innerHTML = `${this.player.player_name} attack ${target.name} with ${this.player.atk} damage`
+            case 'attack':
+                const damage = (this.player.atk-target.def < 0 ? 0 : this.player.atk-target.def);
+                target.take_damage(damage);
+                this.battleLog.innerHTML = `${target.name} take ${damage} damage from ${this.player.player_name}`
         }
         this.can_select = false;
         this.turn = "enemy";
@@ -86,8 +87,9 @@ export class Arena {
         let interval = setInterval(() => {
             if (i < enemy_team.length) {
                 const enemy = enemy_team[i];
-                this.player.health -= enemy.atk;
-                battleLog.innerHTML += `<br>${enemy.name} attack ${this.player.player_name} with ${enemy.atk} damage`;
+                const damage = enemy.atk-this.player.def < 0 ? 0 : enemy.atk-this.player.def;
+                this.player.take_damage(damage);
+                battleLog.innerHTML += `<br>${this.player.player_name} take ${damage} damage from ${enemy.name}`;
                 battleLog.scrollTop = battleLog.scrollHeight;
                 i++;
                 ui.updateStats(this.player);

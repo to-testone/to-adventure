@@ -66,6 +66,11 @@ export class Player {
         ui.updateInventory(this);
     }
 
+    take_damage(damage) {
+        this.health -= damage;
+        if (this.health < 0) {this.health = 0;}
+    }
+
     get_mana(amount) {
         this.mana += amount;
         if (this.mana > this.maxMana) {

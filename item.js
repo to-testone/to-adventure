@@ -1,3 +1,5 @@
+import { ui } from "./ui.js";
+
 export class Item {
     constructor(id, name, desc, amount, price) {
         this.id = id;
@@ -7,12 +9,12 @@ export class Item {
         this.price = price;
     }
 
-    on_click(player, ui) {
+    on_click(player) {
         if (player.atShop) {
-            this.sell(player, ui);
+            this.sell(player);
         }
     }
-    sell(player, ui) {
+    sell(player) {
         player.get_money((this.price/2));
         this.amount -= 1;
         if (this.amount <= 0) {
